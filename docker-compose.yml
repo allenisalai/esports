@@ -21,8 +21,18 @@ services:
        - "python"
   python:
     build: Backend/
+    volumes:
+      - ./:/var/www/backend
+    volumes_from:
+      - hots
+    depends_on:
+      - hots
     #command: ["--yaml", "wsgi_config.yml"]
     #command: --http :9090 --wsgi-file wsgi.py
+  hots:
+    build: Hots/
+    volumes:
+      - ./HotsOutput:/hots_output
 #  angular:
 #    build: FrontEnd/
 #    command: "build --watch"
