@@ -17,19 +17,5 @@ RUN mkdir -p /var/www/backend
 WORKDIR /var/www/backend
 
 COPY ./ ./
-
-#RUN CC=gcc
-
-#RUN export PATH="/usr/local/bin:$PATH"
 EXPOSE 9090
-
-#ENTRYPOINT ["uwsgi", "--yaml", "wsgi_config.yml"]
-CMD [ "uwsgi", "--socket", "0.0.0.0:9090", \
-               "--plugins", "python3", \
-               "--protocol", "uwsgi", \
-							 "--module", "wsgi:app" \
-               #"--callab",  "app", \
-               #"--json", "wsgi_config.json" \
-               ]
-
-#RUN uwsgi --http :9090 --wsgi-file wsgi.py
+CMD [ "uwsgi", "--socket", "0.0.0.0:9090", "--plugins", "python3", "--protocol", "uwsgi", "--module", "wsgi:app"]

@@ -6,17 +6,21 @@ RUN apk update \
   && apk del alpine-sdk \
   && apk add --no-cache bash \
   && rm -rf /tmp/* /var/cache/apk/* *.tar.gz ~/.npm \
-  && npm cache clear --force
+  && npm cache clear --force \
+  && mkdir -p /var/www/frontend/dist
+
+WORKDIR /var/www/frontend
 
 ADD package.json /tmp/package.json
 RUN cd /tmp && npm install
-RUN mkdir -p /var/www/html/frontend/dist \
-  && cp -a /tmp/node_modules /var/www/html/frontend
-
-
-WORKDIR /var/www/html/frontend
-VOLUME /var/www/html/frontend
 COPY ./ ./
-ADD init.sh /
-RUN chmod +x /init.sh
-ENTRYPOINT ["/init.sh"]
+RUN cp -R /tmp/node_modules /var/www/frontend/node_modules
+
+WORKDIR /var/www/frontend
+VOLUME /var/www/frontend
+
+ENTRYPOINT ["ng", "build"]
+
+#ADD init.sh /
+#RUN chmod +x /init.sh
+#ENTRYPOINT ["/init.sh"]

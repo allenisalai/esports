@@ -41,3 +41,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#ignore output
+/HotsOutput/*/*
+/Backend/__pycache__/
+/Frontend/dist/
