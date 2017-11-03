@@ -20,7 +20,3 @@ WORKDIR /var/www/frontend
 VOLUME /var/www/frontend
 
 ENTRYPOINT ["ng", "build"]
-
-#ADD init.sh /
-#RUN chmod +x /init.sh
-#ENTRYPOINT ["/init.sh"]
