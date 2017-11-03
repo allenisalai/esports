@@ -8,13 +8,8 @@ for filename in Replays/*.StormReplay; do
 
 
   for report in "details" "messageevents"; do
-    echo $report
     output="/hots_output/$file/$report.json"
-    python Protocol/heroprotocol.py "--$report" "$filename" > $output
+    python Protocol/heroprotocol.py --json "--$report" "$filename" > $output
     echo $output
   done
-done
-
-for filename in /hots_output/*/*; do
-  echo $filename
 done
