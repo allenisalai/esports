@@ -9,14 +9,10 @@ RUN apk update \
   && npm cache clear --force \
   && mkdir -p /var/www/frontend/dist
 
-WORKDIR /var/www/frontend
-
-ADD package.json /tmp/package.json
-RUN cd /tmp && npm install
-COPY ./ ./
-RUN cp -R /tmp/node_modules /var/www/frontend/node_modules
-
-WORKDIR /var/www/frontend
 VOLUME /var/www/frontend
+WORKDIR /var/www/frontend
+
+COPY ./ ./
+#RUN  npm install
 
 ENTRYPOINT ["ng", "build"]

@@ -14,6 +14,7 @@ services:
       - python
     volumes:
       - ./Docker/Nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./Frontend:/var/www/frontend
     ports:
       - 80:80
     links:
@@ -22,21 +23,30 @@ services:
     build: Backend/
     volumes:
       - ./Backend:/var/www/backend
+      - ./HotsOutput:/hots_output
     volumes_from:
       - hots
     depends_on:
       - hots
+  #  links:
+  #    - db
   hots:
     build: Hots/
     volumes:
       - ./HotsOutput:/hots_output
-
+    #links:
+    #  - db
+    #depends_on:
+    #  - db
   angular:
     build: FrontEnd/
     command: "--watch"
-    volumes:
-      - ./Frontend/e2e:/var/www/frontend/e2e
-      - ./Frontend/src:/var/www/frontend/src
-      - ./Frontend/protractor.conf.js:/var/www/frontend/protractor.conf.js
-      - ./Frontend/tsconfig.conf.js:/var/www/frontend/tsconfig.conf.js
-      - ./Frontend/tslint.conf.js:/var/www/frontend/tslint.conf.js
+    #volumes:
+      #- ./Frontend:/var/www/frontend
+      #- ./Frontend/e2e:/var/www/frontend/e2e
+      #- ./Frontend/src:/var/www/frontend/src
+      #- ./Frontend/protractor.conf.js:/var/www/frontend/protractor.conf.js
+      #- ./Frontend/tsconfig.conf.js:/var/www/frontend/tsconfig.conf.js
+      #- ./Frontend/tslint.conf.js:/var/www/frontend/tslint.conf.js
+  #db:
+  #  images: postgres:latest

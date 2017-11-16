@@ -10,10 +10,11 @@ def hello():
     file = open('/hots_output/Tomb_of_the_Spider_Queen/details.json')
 
     details = json.loads(file.read())
+    player_names = [];
     #for player in details['m_playerList']
-#        print(player['m_name'])
+    #    player_names.append(player['m_name'])
 
-    return json.dumps(details['m_playerList'])
+    return json.dumps(player_names)
 
 if __name__ == "__main__":
     app.run(debug=true, host='0.0.0.0', port=9090)
