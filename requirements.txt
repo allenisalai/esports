@@ -1,5 +1,0 @@
-# requirements.txt
-SQLAlchemy
-psycopg2
-click
-terminaltables

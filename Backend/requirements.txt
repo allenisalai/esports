@@ -1,0 +1,5 @@
+# requirements.txt
+Flask == 0.12
+uwsgi == 2.0.14
+#SQLAlchemy == 1.1.14
+#psycopg2 == 2.7.3.1
